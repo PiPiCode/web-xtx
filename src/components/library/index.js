@@ -4,10 +4,14 @@
 // vue 3.0 插件写法要素：导出一个对象，有 install 函数，默认传入了 app 应用实例，app基础之上扩展
 
 import XtxSkeleton from './xtx-skeleton.vue'
+import XtxCarousel from './xtx-carousel.vue'
+import XtxMore from './xtx-more.vue'
 export default {
   install(app) {
     // 在 app 上进行扩展，app提供 component directive 函数
     // 如果要挂载原型方法，app.config.globalPropertities 方式
     app.component(XtxSkeleton.name, XtxSkeleton)
+    app.component(XtxCarousel.name, XtxCarousel)
+    app.component(XtxMore.name, XtxMore)
   }
 }
