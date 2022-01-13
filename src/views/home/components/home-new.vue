@@ -5,15 +5,18 @@
         <XtxMore path="/" />
       </template>
       <!-- 面板内容 -->
-      <ul class="goods-list">
-        <li v-for="item in goods" :key="item.id">
-          <router-link :to="`/product/${item.id}`">
-            <img :src="item.picture" alt="" />
-            <p class="name ellipsis">{{ item.name }}</p>
-            <p class="price">&yen;{{ item.price }}</p>
-          </router-link>
-        </li>
-      </ul>
+      <transition name="fade">
+        <ul class="goods-list" v-if="goods.length">
+          <li v-for="item in goods" :key="item.id">
+            <router-link :to="`/product/${item.id}`">
+              <img :src="item.picture" alt="" />
+              <p class="name ellipsis">{{ item.name }}</p>
+              <p class="price">&yen;{{ item.price }}</p>
+            </router-link>
+          </li>
+        </ul>
+        <HomeSkeleton bg="#f0f9f4" v-else />
+      </transition>
     </HomePanel>
   </div>
 </template>
@@ -22,6 +25,7 @@
   import XtxMore from '@components/library/xtx-more'
   import { findNew } from '@/api/home'
   import { ref } from 'vue'
+  import HomeSkeleton from './home-skeleton.vue'
   const goods = ref([])
   findNew().then(data => {
     console.log(data.result)
