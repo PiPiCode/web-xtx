@@ -4,19 +4,21 @@
       <template #right>
         <XtxMore path="/" />
       </template>
-      <!-- 面板内容 -->
-      <transition name="fade">
-        <ul class="goods-list" v-if="goods.length">
-          <li v-for="item in goods" :key="item.id">
-            <router-link :to="`/product/${item.id}`">
-              <img :src="item.picture" alt="" />
-              <p class="name ellipsis">{{ item.name }}</p>
-              <p class="price">&yen;{{ item.price }}</p>
-            </router-link>
-          </li>
-        </ul>
-        <HomeSkeleton bg="#f0f9f4" v-else />
-      </transition>
+      <div ref="target" style="position: relative; height: 426px">
+        <!-- 面板内容 -->
+        <transition name="fade">
+          <ul class="goods-list" v-if="goods.length">
+            <li v-for="item in goods" :key="item.id">
+              <router-link :to="`/product/${item.id}`">
+                <img :src="item.picture" alt="" />
+                <p class="name ellipsis">{{ item.name }}</p>
+                <p class="price">&yen;{{ item.price }}</p>
+              </router-link>
+            </li>
+          </ul>
+          <HomeSkeleton bg="#f0f9f4" v-else />
+        </transition>
+      </div>
     </HomePanel>
   </div>
 </template>
@@ -24,13 +26,15 @@
   import HomePanel from '@views/home/components/home-panel'
   import XtxMore from '@components/library/xtx-more'
   import { findNew } from '@/api/home'
-  import { ref } from 'vue'
+  // import { ref } from 'vue'
   import HomeSkeleton from './home-skeleton.vue'
-  const goods = ref([])
-  findNew().then(data => {
-    console.log(data.result)
-    goods.value = data.result
-  })
+  import { useLazyData } from '@/hooks'
+  // let goods = ref([])
+  // findNew().then(data => {
+  //   console.log(data.result)
+  //   goods.value = data.result
+  // })
+  const { result: goods, target } = useLazyData(findNew)
 </script>
 <style lang="less" scoped>
   .goods-list {
