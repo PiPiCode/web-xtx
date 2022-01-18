@@ -24,7 +24,6 @@
 </template>
 <script setup>
   import HomePanel from '@views/home/components/home-panel'
-  import XtxMore from '@components/library/xtx-more'
   import { findNew } from '@/api/home'
   // import { ref } from 'vue'
   import HomeSkeleton from './home-skeleton.vue'

@@ -33,6 +33,7 @@
 
 <script setup>
   import HomePanel from './home-panel.vue'
+  import XtxMore from '@components/library/xtx-more'
   import HomeGoods from './home-goods.vue'
   import { useLazyData } from '@/hooks'
   import { findGoods } from '@/api/home'

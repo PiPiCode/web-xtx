@@ -63,6 +63,6 @@ export default (url, method, submitData) => {
     //1.如果是get请求，需要使用 params 来传递 submitDat
     //2.如果不是get请求，需要使用 data 来传递 submitDat
     // [] 设置一个动态的key，里面可以写 js表达式，js表达式的执行结果作为key
-    [method.toLowerCase() === 'get' ? 'pramas' : 'data']: submitData
+    [method.toLowerCase() === 'get' ? 'params' : 'data']: submitData
   })
 }
