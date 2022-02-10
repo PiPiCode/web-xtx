@@ -4,7 +4,7 @@
     <XtxBreadItem
       :key="category.top.id"
       v-if="category.top"
-      to="`/category/${category.top.id}`"
+      :to="`/category/${category.top.id}`"
     >
       {{ category.top.name }}
     </XtxBreadItem>
